@@ -5,7 +5,12 @@
 
   /* nav */
   var nav = $('#nav');
-  var onScroll = function () { nav.classList.toggle('is-stuck', window.scrollY > 40); };
+  var bar = $('#progress');
+  var onScroll = function () {
+    nav.classList.toggle('is-stuck', window.scrollY > 40);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  };
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
   var links = $$('.nav__links a[href^="#"]');
@@ -19,7 +24,7 @@
     $$('section[id]').forEach(function (s) { spy.observe(s); });
 
     /* reveal */
-    var targets = $$('.section__head, .split > *, .card, .explorer, .plate, .stage, .result, .compare, .g, .reels figure, .work__item, .tools > div, .roadmap li, .about > *, .sub');
+    var targets = $$('.section__head, .split > *, .findings, .explorer, .plate, .stage, .result, .compare, .g, .reels figure, .work__item, .tools > div, .roadmap li, .about > *, .sub');
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });

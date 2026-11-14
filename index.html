@@ -16,12 +16,13 @@
 </head>
 <body>
 
+<div class="progress" id="progress"></div>
 <header class="nav" id="nav">
   <a class="nav__brand" href="#top">JB<span>/</span>Portfolio</a>
   <nav class="nav__links" aria-label="Sections">
     <a href="#vtol"><span>01</span>VTOL UAS</a>
     <a href="#bmfa"><span>02</span>BMFA</a>
-    <a href="#other"><span>03</span>Other work</a>
+    <a href="#other"><span>03</span>Other Work</a>
     <a href="#toolkit"><span>04</span>Toolkit</a>
     <a href="#about"><span>05</span>About</a>
     <a class="nav__cta" href="#contact">Contact</a>
@@ -34,21 +35,23 @@
 <section class="hero">
   <img class="hero__img" src="assets/img/tr-3778.jpg" alt="Trim Reaper, a red and black payload aircraft, climbing away over fields" fetchpriority="high">
   <div class="hero__shade"></div>
+  <span class="tick tick--tl"></span><span class="tick tick--tr"></span>
+  <p class="hero__cap">Fig. 00 · Trim Reaper · Test flight · March 2026</p>
   <div class="hero__body wrap">
-    <p class="eyebrow">Aerospace Systems Engineer · MEng 2027 · SC Clearance (granted 2026)</p>
+    <p class="eyebrow">Aerospace Systems Engineer · MEng 2027</p>
     <h1>James<br>Baldwin</h1>
-    <p class="hero__lede">I build models of complex systems, test them until they break, and turn what I learn into hardware that flies.</p>
-    <div class="hero__actions">
-      <a class="btn btn--solid" href="#vtol">See the work</a>
-      <a class="btn" href="#contact">Get in touch</a>
+    <div class="hero__row">
+      <p class="hero__lede">Final-year engineer at Coventry University, working across simulation, analysis and aircraft that get built and flown.</p>
+      <a class="medal" href="#bmfa">
+        <b>2<sup>nd</sup></b>
+        <span><strong>BMFA Payload Challenge 2026</strong>Highest-placed UK university of 13 teams</span>
+      </a>
     </div>
   </div>
-  <dl class="stats wrap">
-    <div><dt>2nd <small>/ 13</small></dt><dd>BMFA Payload Challenge 2026, highest-placed UK university</dd></div>
-    <div><dt>21</dt><dd>Stress scenarios run through my VTOL mission simulation</dd></div>
-    <div><dt>107</dt><dd>Requirements traced from the brief down to the model</dd></div>
-    <div><dt>94%</dt><dd>Further Engineering Mathematics, Year 2</dd></div>
-  </dl>
+  <nav class="index wrap" aria-label="Featured projects">
+    <a href="#vtol"><span>01</span><b>Autonomous VTOL Delivery UAS</b><em>Modelling and simulation · Ongoing</em><i aria-hidden="true">&#8600;</i></a>
+    <a href="#bmfa"><span>02</span><b>BMFA Payload Challenge</b><em>Design, build and fly · 2026</em><i aria-hidden="true">&#8600;</i></a>
+  </nav>
 </section>
 
 <!-- ============ 01 VTOL ============ -->
@@ -56,7 +59,7 @@
   <div class="wrap">
     <header class="section__head">
       <p class="eyebrow"><span class="num">01</span> Modelling · Simulation · Risk <span class="tag tag--live">Ongoing</span></p>
-      <h2>Autonomous VTOL delivery UAS</h2>
+      <h2>Autonomous VTOL Delivery UAS</h2>
       <p class="section__lede">A currently ongoing individual project: a level 4 autonomous aircraft that takes off vertically, searches a field for a landing pad, delivers a parcel and flies home. The requirements, design and full mission simulation are done. The build and test flight are planned for April 2027, with the eventual goal of delivering the entire system.</p>
     </header>
 
@@ -68,26 +71,29 @@
         <figcaption>Avionics pod, exploded. Every component and all 41 harnesses are modelled, with zero clashes.</figcaption>
       </figure>
       <div class="prose">
-        <h3>A model built from first principles</h3>
+        <h3>A Model Built From First Principles</h3>
         <p>Before any hardware exists, the whole mission runs in a Simulink model I built: six degree of freedom flight dynamics, atmosphere and turbulence, battery energy, sensors and a camera, with the decision logic written in Stateflow.</p>
         <p>I then tried to break it. Twenty-one scenarios cover wind, an aged battery, GNSS jamming, sensor faults, crossing traffic and obstacles. Each run is scored automatically against pass and fail criteria and logs around 37 metrics for analysis.</p>
-        <p>The failures were the useful part. Each one traced back to a design assumption, and each one changed a requirement.</p>
-        <ul class="kv">
+                <ul class="kv">
           <li><span>Nominal mission</span><b>169 s · 56.5 Wh</b></li>
           <li><span>Parcel release error</span><b>0.11 m from pad centre</b></li>
           <li><span>Battery on return</span><b>58%</b></li>
           <li><span>Model vs independent harness</span><b>within 0.34 m</b></li>
-          <li><span>Static checks</span><b>53 of 53 pass</b></li>
+          <li><span>Requirements traced</span><b>107, modelled in SysML</b></li>
         </ul>
       </div>
     </div>
 
-    <!-- capability cards -->
-    <div class="cards cards--4">
-      <article class="card"><p class="card__k">Scenario testing</p><h4>Stress the model, not just the happy path</h4><p>18 of 21 scenarios pass. The three that fail are genuine findings, and each became a requirement change.</p></article>
-      <article class="card"><p class="card__k">Decisions under uncertainty</p><h4>A reserve rule that adapts</h4><p>A fixed "return at 35%" rule ran an aged battery flat. I replaced it with an energy-aware rule holding a 1.3x margin and a 15% reserve.</p></article>
-      <article class="card"><p class="card__k">Risk analysis</p><h4>Root causes before fixes</h4><p>P-diagram, Kepner-Tregoe problem definition and Ishikawa fishbone analysis across six failure modes, to ARP4761A principles.</p></article>
-      <article class="card"><p class="card__k">Traceability</p><h4>Every number has a source</h4><p>107 requirements following the V-Model, modelled in SysML and linked to model elements with no unresolved links.</p></article>
+    <!-- findings -->
+    <div class="findings">
+      <header>
+        <p class="eyebrow">What broke, and what changed</p>
+        <h3>Three Failures Worth Finding</h3>
+        <p class="muted">18 of 21 scenarios pass. The other three exposed assumptions in my own design, and each one became a requirement.</p>
+      </header>
+      <article><p class="card__k">S08 · Aged battery</p><h4>A Fixed Rule Ran the Battery Flat</h4><p>Returning at a fixed 35% charge works on a healthy battery. At 45% capacity it left the aircraft 375 m from home with nothing left.</p><p class="fix"><span>Change</span>Return on estimated energy to get home, with a 1.3x margin and a 15% reserve.</p></article>
+      <article><p class="card__k">S04 · Mast at speed</p><h4>No Room to Turn at 21 m/s</h4><p>The obstacle sensor clears a mast at 12 m/s. At fixed-wing speed the warning comes too late to avoid it.</p><p class="fix"><span>Change</span>Fixed-wing legs are planned at least 50 m clear of known obstacles.</p></article>
+      <article><p class="card__k">S12 · Jamming</p><h4>Drift After Termination</h4><p>With GNSS and the link both lost, the terminated descent drifted 14 m against a 10 m limit.</p><p class="fix"><span>Change</span>Fed back into the flight termination descent requirement.</p></article>
     </div>
 
     <!-- scenario explorer -->
@@ -95,7 +101,7 @@
       <div class="explorer__head">
         <div>
           <p class="eyebrow">Interactive · simulation results</p>
-          <h3>Scenario explorer</h3>
+          <h3>Scenario Explorer</h3>
           <p class="muted">All 21 runs from the mission simulation. Hover a point or pick a row to see what was tested.</p>
         </div>
         <div class="filters" role="group" aria-label="Filter scenarios">
@@ -127,12 +133,10 @@
       <figure class="plate"><a href="assets/img/fig-18.jpg" data-lb><img loading="lazy" src="assets/img/fig-18.jpg" alt="State of charge for the fixed and energy-aware return rules"></a><figcaption><b>Fixed vs energy-aware return.</b> With the battery at 45% capacity the fixed rule runs flat 375 m from home. The energy-aware rule lands with reserve.</figcaption></figure>
       <figure class="plate"><a href="assets/img/fig-14.jpg" data-lb><img loading="lazy" src="assets/img/fig-14.jpg" alt="Battery power, energy used and state of charge over the nominal mission"></a><figcaption><b>Energy budget.</b> Power, energy used and state of charge through each phase: 57 Wh of 133 Wh.</figcaption></figure>
       <figure class="plate"><a href="assets/img/fig-15.jpg" data-lb><img loading="lazy" src="assets/img/fig-15.jpg" alt="Camera coverage heatmaps for two search patterns"></a><figcaption><b>Search coverage.</b> Camera frames over each point of the area, comparing the VTOL search with the fixed-wing option.</figcaption></figure>
-      <figure class="plate"><a href="assets/img/fig-12.jpg" data-lb><img loading="lazy" src="assets/img/fig-12.jpg" alt="Simulated camera frames with the pad accepted and a tarpaulin rejected"></a><figcaption><b>Detection.</b> The vision model accepts the pad from 60 m and rejects an orange tarpaulin on the size gate.</figcaption></figure>
       <figure class="plate"><a href="assets/img/fig-19.jpg" data-lb><img loading="lazy" src="assets/img/fig-19.jpg" alt="Descent profiles after flight termination"></a><figcaption><b>Flight termination.</b> Descent and ground path after termination in six failure cases.</figcaption></figure>
-      <figure class="plate"><a href="assets/img/fig-17.jpg" data-lb><img loading="lazy" src="assets/img/fig-17.jpg" alt="Obstacle and traffic avoidance results"></a><figcaption><b>Avoidance.</b> A mast seen at 12 m/s is cleared. At 21 m/s there is no room to turn, which set a 50 m planning stand-off.</figcaption></figure>
     </div>
 
-    <h3 class="sub">Logic and architecture</h3>
+    <h3 class="sub">Logic and Architecture</h3>
     <div class="plates plates--3">
       <figure class="plate"><a href="assets/img/fig-10.jpg" data-lb><img loading="lazy" src="assets/img/fig-10.jpg" alt="Top level of the Simulink model"></a><figcaption><b>Simulink model.</b> One subsystem per hardware unit.</figcaption></figure>
       <figure class="plate"><a href="assets/img/fig-09.jpg" data-lb><img loading="lazy" src="assets/img/fig-09.jpg" alt="Collision avoidance state chart"></a><figcaption><b>Collision avoidance.</b> Stateflow chart.</figcaption></figure>
@@ -141,7 +145,7 @@
 
     <div class="split split--rev">
       <div class="prose">
-        <h3>From model to hardware</h3>
+        <h3>From Model to Hardware</h3>
         <p>A Cube Orange+ flies the aircraft and a Raspberry Pi 5 plans the search and processes the camera images. An independent flight termination system sits between the flight controller and all five motor controllers. It shares no sensor, radio, processor or battery with the rest of the aircraft.</p>
         <p>The avionics live in a 3D printable pod: 11 ASA parts, 448 g, 498 mm long, sliced and ready to print.</p>
         <ul class="kv">
@@ -160,11 +164,11 @@
     </div>
 
     <ol class="roadmap" aria-label="Project roadmap">
-      <li class="is-done"><span>Done</span><b>Requirements and risk</b><em>99 requirements, SysML, safety analysis</em></li>
-      <li class="is-done"><span>Done</span><b>Design and simulation</b><em>Simulink and Stateflow model, 21 scenarios</em></li>
-      <li class="is-next"><span>Next</span><b>Pod print and bench test</b><em>Avionics integration on the bench</em></li>
-      <li><span>2027</span><b>Airframe build</b><em>Integration with the VTOL airframe</em></li>
-      <li><span>April 2027</span><b>Test flight</b><em>Full autonomous delivery mission</em></li>
+      <li class="is-done"><span>Done</span><b>Requirements and Risk</b><em>99 requirements, SysML, safety analysis</em></li>
+      <li class="is-done"><span>Done</span><b>Design and Simulation</b><em>Simulink and Stateflow model, 21 scenarios</em></li>
+      <li class="is-next"><span>Next</span><b>Pod Print and Bench Test</b><em>Avionics integration on the bench</em></li>
+      <li><span>2027</span><b>Airframe Build</b><em>Integration with the VTOL airframe</em></li>
+      <li><span>April 2027</span><b>Test Flight</b><em>Full autonomous delivery mission</em></li>
     </ol>
   </div>
 </section>
@@ -225,18 +229,16 @@
       <table class="table">
         <thead><tr><th></th><th>Trim Reaper</th><th>Phoenix</th></tr></thead>
         <tbody>
-          <tr><th>Purpose</th><td>University prototype</td><td>Competition aircraft</td></tr>
           <tr><th>Wingspan</th><td>2.0 m</td><td>1.75 m</td></tr>
           <tr><th>Layout</th><td colspan="2">High tapered wing, V-tail, tractor propeller, payload under the wing</td></tr>
           <tr><th>Aerofoil</th><td colspan="2">MH114 main wing, NACA 0008 tail</td></tr>
           <tr><th>Structure</th><td colspan="2">Balsa and lite ply rib and spar wing, box fuselage, carbon-fibre main gear</td></tr>
           <tr><th>Power</th><td colspan="2">3S 2200 mAh LiPo, 12x8 propeller, 14.2 N static thrust</td></tr>
-          <tr><th>Outcome</th><td>Lifted about 3.5 kg in testing</td><td>2nd of 13, flew 2 kg and 4 kg</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3 class="sub">Trim Reaper in the air</h3>
+    <h3 class="sub">Trim Reaper in the Air</h3>
     <div class="gallery">
       <a class="g g--w2 g--h2" href="assets/img/tr-3782.jpg" data-lb><img loading="lazy" src="assets/img/tr-3782.jpg" alt="Trim Reaper banking against cloud"></a>
       <a class="g" href="assets/img/tr-3696.jpg" data-lb><img loading="lazy" src="assets/img/tr-3696.jpg" alt="Trim Reaper parked on the grass showing its V-tail"></a>
@@ -245,19 +247,15 @@
       <a class="g" href="assets/img/tr-3809.jpg" data-lb><img loading="lazy" src="assets/img/tr-3809.jpg" alt="The team with Trim Reaper"></a>
     </div>
 
-    <h3 class="sub">Phoenix, from bench to competition</h3>
+    <h3 class="sub">Phoenix, From Bench to Competition</h3>
     <div class="gallery gallery--p">
-      <a class="g" href="assets/img/ph-8178.jpg" data-lb><img loading="lazy" src="assets/img/ph-8178.jpg" alt="Phoenix wing being assembled in the workshop"></a>
       <a class="g" href="assets/img/ph-8196.jpg" data-lb><img loading="lazy" src="assets/img/ph-8196.jpg" alt="Phoenix wing structure on the bench"></a>
       <a class="g" href="assets/img/ph-itif4523.jpg" data-lb><img loading="lazy" src="assets/img/ph-itif4523.jpg" alt="Phoenix structure during covering"></a>
-      <a class="g" href="assets/img/ph-wrgh3405.jpg" data-lb><img loading="lazy" src="assets/img/ph-wrgh3405.jpg" alt="Finished Phoenix airframe"></a>
       <a class="g" href="assets/img/ph-8254.jpg" data-lb><img loading="lazy" src="assets/img/ph-8254.jpg" alt="Phoenix on the competition strip"></a>
-      <a class="g" href="assets/img/ph-8273.jpg" data-lb><img loading="lazy" src="assets/img/ph-8273.jpg" alt="Phoenix in flight at the competition"></a>
-      <a class="g" href="assets/img/ph-8293.jpg" data-lb><img loading="lazy" src="assets/img/ph-8293.jpg" alt="The team gathered around Phoenix"></a>
       <a class="g" href="assets/img/ph-mjfr0266.jpg" data-lb><img loading="lazy" src="assets/img/ph-mjfr0266.jpg" alt="Team Phoenix with the aircraft at the competition"></a>
     </div>
 
-    <h3 class="sub">Flight footage</h3>
+    <h3 class="sub">Flight Footage</h3>
     <div class="reels">
       <figure><video controls muted playsinline preload="none" poster="assets/video/trim-reaper-flip.jpg"><source src="assets/video/trim-reaper-flip.mp4" type="video/mp4"></video><figcaption><b>Trim Reaper</b> test flight</figcaption></figure>
       <figure><video controls muted playsinline preload="none" poster="assets/video/trim-reaper-4kg.jpg"><source src="assets/video/trim-reaper-4kg.mp4" type="video/mp4"></video><figcaption><b>Trim Reaper</b> heavy-lift test</figcaption></figure>
@@ -265,7 +263,7 @@
       <figure><video controls muted playsinline preload="none" poster="assets/video/phoenix-flight.jpg"><source src="assets/video/phoenix-flight.mp4" type="video/mp4"></video><figcaption><b>Phoenix</b> in flight</figcaption></figure>
     </div>
 
-    <h3 class="sub">Structural analysis</h3>
+    <h3 class="sub">Structural Analysis</h3>
     <div class="plates plates--3">
       <figure class="plate plate--dark"><a href="assets/img/old-fea-wing.jpg" data-lb><img loading="lazy" src="assets/img/old-fea-wing.jpg" alt="FEA stress plot of the wing structure"></a><figcaption><b>FEA.</b> Wing structure at maximum take-off weight.</figcaption></figure>
       <figure class="plate"><a href="assets/img/old-spar-analysis.jpg" data-lb><img loading="lazy" src="assets/img/old-spar-analysis.jpg" alt="Shear force, bending moment and deflection plots for the spars"></a><figcaption><b>Spar sizing.</b> Shear, bending and deflection by payload.</figcaption></figure>
@@ -279,14 +277,14 @@
   <div class="wrap">
     <header class="section__head">
       <p class="eyebrow"><span class="num">03</span> Selected coursework</p>
-      <h2>Other work</h2>
+      <h2>Other Work</h2>
     </header>
     <div class="work">
       <article class="work__item">
         <a href="assets/img/old-simulink-block.jpg" data-lb class="work__img work__img--light"><img loading="lazy" src="assets/img/old-simulink-block.jpg" alt="Simulink architecture model for the AICDS"></a>
         <div>
           <p class="card__k">Avionics Systems · 2026</p>
-          <h3>AICDS: attitude indicator and collision detection</h3>
+          <h3>AICDS: Attitude Indicator and Collision Detection</h3>
           <p>An avionics system with a MATLAB-based GUI, developed requirement-first through the V-Model. I modelled the architecture in Simulink, wrote requirements at three levels with full traceability, and used a Kalman filter to turn noisy sensor data into a steady attitude display.</p>
           <p class="meta">MATLAB · Simulink · Kalman filter · 92 requirements, each with a test case</p>
         </div>
@@ -295,7 +293,7 @@
         <a href="assets/img/old-cfd-pressure.jpg" data-lb class="work__img"><img loading="lazy" src="assets/img/old-cfd-pressure.jpg" alt="CFD pressure contours around a supersonic aerofoil"></a>
         <div>
           <p class="card__k">Computational Fluid Dynamics · 2025</p>
-          <h3>Mach 2.5 interceptor wing</h3>
+          <h3>Mach 2.5 Interceptor Wing</h3>
           <p>A wing sized from an operational requirement and proven in 2D and 3D CFD. Structured meshes with a mesh independence study, validated against published aerofoil data before any conclusions were drawn.</p>
           <p class="meta">ANSYS Fluent · validation against published data · Mach 2.5 at 18 km</p>
         </div>
@@ -303,7 +301,7 @@
       <article class="work__item work__item--text">
         <div>
           <p class="card__k">Year 1 team project · 2023 to 2024</p>
-          <h3>Precision payload UAV</h3>
+          <h3>Precision Payload UAV</h3>
           <p>Project manager for a payload release system that fits commercial drones: an undercarriage designed in CATIA V5 with a microcontroller-driven release. Graded 85%, with the highest peer review in the team.</p>
           <p class="meta">Project management · CATIA V5 · embedded control</p>
         </div>
@@ -320,10 +318,10 @@
       <h2>Toolkit</h2>
     </header>
     <div class="tools">
-      <div><h4>Modelling and analysis</h4><ul><li>MATLAB, Simulink, Stateflow</li><li>Python and Excel for data analysis</li><li>Scenario and stress testing</li><li>Kalman filtering and sensor fusion</li></ul></div>
-      <div><h4>Systems and risk</h4><ul><li>MBSE and SysML</li><li>V-Model, requirements and traceability</li><li>Verification and validation</li><li>Root-cause and safety analysis</li></ul></div>
-      <div><h4>Structures and aerodynamics</h4><ul><li>ANSYS Mechanical and Fluent</li><li>Hand calculations and load testing</li><li>SolidWorks, CATIA V5, Fusion 360</li><li>Technical drawings</li></ul></div>
-      <div><h4>Build and embedded</h4><ul><li>C++ on Arduino</li><li>Raspberry Pi and sensors</li><li>Laser cutting and 3D printing</li><li>Flight test</li></ul></div>
+      <div><h4>Modelling and Analysis</h4><ul><li>MATLAB, Simulink, Stateflow</li><li>Python and Excel for data analysis</li><li>Scenario and stress testing</li><li>Kalman filtering and sensor fusion</li></ul></div>
+      <div><h4>Systems and Risk</h4><ul><li>MBSE and SysML</li><li>V-Model, requirements and traceability</li><li>Verification and validation</li><li>Root-cause and safety analysis</li></ul></div>
+      <div><h4>Structures and Aerodynamics</h4><ul><li>ANSYS Mechanical and Fluent</li><li>Hand calculations and load testing</li><li>SolidWorks, CATIA V5, Fusion 360</li><li>Technical drawings</li></ul></div>
+      <div><h4>Build and Embedded</h4><ul><li>C++ on Arduino</li><li>Raspberry Pi and sensors</li><li>Laser cutting and 3D printing</li><li>Flight test</li></ul></div>
     </div>
   </div>
 </section>
@@ -334,7 +332,7 @@
     <figure class="about__img"><img loading="lazy" src="assets/img/tr-3552.jpg" alt="James Baldwin standing with the Trim Reaper aircraft"></figure>
     <div>
       <p class="eyebrow"><span class="num">05</span> About</p>
-      <h2>Analysis that ends up in the real world</h2>
+      <h2>Analysis That Ends Up in the Real World</h2>
       <p class="section__lede">I'm a final-year MEng Aerospace Systems Engineering student at Coventry University, predicted a First and graduating in May 2027.</p>
       <p>What I enjoy most is the modelling: taking a messy real system, writing down how it behaves, testing that model hard and using the numbers to make a decision. Aircraft have been my way into that, but the method travels. I'm looking for graduate roles from 2027 in systems, avionics, modelling and simulation, and in quantitative modelling and data analysis more widely.</p>
       <p>I'm a British national based near Bristol and Bath, and happy to relocate nationally or internationally.</p>
@@ -352,7 +350,7 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <p class="eyebrow">Contact</p>
-    <h2>Let's talk.</h2>
+    <h2>Let's Talk.</h2>
     <div class="contact__links">
       <a href="mailto:james.a.baldwin@hotmail.co.uk">james.a.baldwin@hotmail.co.uk<span>Email</span></a>
       <a href="https://www.linkedin.com/in/james-baldwin-3889aa296" target="_blank" rel="noopener">linkedin.com/in/james-baldwin<span>LinkedIn</span></a>
