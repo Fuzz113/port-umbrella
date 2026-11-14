@@ -84,18 +84,6 @@
       </div>
     </div>
 
-    <!-- findings -->
-    <div class="findings">
-      <header>
-        <p class="eyebrow">What broke, and what changed</p>
-        <h3>Three Failures Worth Finding</h3>
-        <p class="muted">18 of 21 scenarios pass. The other three exposed assumptions in my own design, and each one became a requirement.</p>
-      </header>
-      <article><p class="card__k">S08 · Aged battery</p><h4>A Fixed Rule Ran the Battery Flat</h4><p>Returning at a fixed 35% charge works on a healthy battery. At 45% capacity it left the aircraft 375 m from home with nothing left.</p><p class="fix"><span>Change</span>Return on estimated energy to get home, with a 1.3x margin and a 15% reserve.</p></article>
-      <article><p class="card__k">S04 · Mast at speed</p><h4>No Room to Turn at 21 m/s</h4><p>The obstacle sensor clears a mast at 12 m/s. At fixed-wing speed the warning comes too late to avoid it.</p><p class="fix"><span>Change</span>Fixed-wing legs are planned at least 50 m clear of known obstacles.</p></article>
-      <article><p class="card__k">S12 · Jamming</p><h4>Drift After Termination</h4><p>With GNSS and the link both lost, the terminated descent drifted 14 m against a 10 m limit.</p><p class="fix"><span>Change</span>Fed back into the flight termination descent requirement.</p></article>
-    </div>
-
     <!-- scenario explorer -->
     <div class="explorer" id="explorer">
       <div class="explorer__head">
